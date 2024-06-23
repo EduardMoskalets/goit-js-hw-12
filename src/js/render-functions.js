@@ -62,7 +62,7 @@ import "izitoast/dist/css/iziToast.min.css";
 export function clearResults(container) {
     container.innerHTML = '';
 }
-
+//  =========================== редер ======================================
 export function renderImages(images, container) {
     const markup = images.map(image => `
         <a href="${image.largeImageURL}" class="gallery__item">
@@ -82,6 +82,7 @@ export function renderImages(images, container) {
     lightbox.refresh();
 }
 
+// ======================================= библиотека изи тоаст ==========================
 export function showToast(type, message) {
     iziToast[type]({
         title: type.charAt(0).toUpperCase() + type.slice(1),
@@ -89,11 +90,14 @@ export function showToast(type, message) {
     });
 }
 
+//  ============================ переключение =======================================
 export function toggleLoadMoreButton(show) {
     const loadMoreButton = document.querySelector('.load-more');
     loadMoreButton.classList.toggle('hidden', !show);
 }
 
+
+// ======================= функция скролл пейдж =======================================
 export function scrollPage() {
     const { height: cardHeight } = document
         .querySelector('.gallery__item')

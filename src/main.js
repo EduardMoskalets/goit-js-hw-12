@@ -80,6 +80,7 @@ const loadMoreButton = document.querySelector('.load-more');
 let currentPage = 1;
 let currentQuery = '';
 
+// ================= слушатель сабмит ==============================
 searchForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     const query = searchQueryInput.value.trim();
@@ -88,12 +89,13 @@ searchForm.addEventListener('submit', async (event) => {
         return;
     }
 
+// =======================данные ====================================
     currentQuery = query;
     currentPage = 1;
     clearResults(resultsContainer);
     toggleLoadMoreButton(false);
     showLoadingIndicator();
-    
+// ====================== кнопка лоад мор ================================
     try {
         const { hits, totalHits } = await getPhotos(query, currentPage);
         hideLoadingIndicator();
@@ -110,6 +112,7 @@ searchForm.addEventListener('submit', async (event) => {
     }
 });
 
+// =====================слушатель клик ==========================
 loadMoreButton.addEventListener('click', async () => {
     currentPage++;
     showLoadingIndicator();
@@ -123,7 +126,7 @@ loadMoreButton.addEventListener('click', async () => {
             scrollPage();
             toggleLoadMoreButton(currentPage * 15 < totalHits);
         }
-
+//  ==================== проверка ===============================================
         if (currentPage * 15 >= totalHits) {
             showToast('info', "We're sorry, but you've reached the end of search results.");
         }
@@ -133,6 +136,7 @@ loadMoreButton.addEventListener('click', async () => {
     }
 });
 
+// =========================== лоадер ========================================
 function showLoadingIndicator() {
     resultsContainer.insertAdjacentHTML('beforeend', '<div class="loader"></div>');
 }
