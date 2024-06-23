@@ -1,6 +1,6 @@
 // ================= Импорт с JS файлов ==============================
 import { getPhotos } from './js/pixabay-api.js';
-import { clearResults, renderImages, showToast } from './js/render-function.js';
+import { clearResults, renderImages, showToast } from './js/render-functions.js';
 
 //  ======== все элементы =========
 const searchForm = document.getElementById('searchForm');
