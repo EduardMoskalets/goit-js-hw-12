@@ -44,6 +44,17 @@ body {
   outline: none;
 }
 
+.load-more {
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+}
+
 .search-button:hover {
   background-color: #0056b3;
 }
@@ -90,6 +101,10 @@ body {
 .info-item {
   margin: 0;
   font-size: 14px;
+}
+
+.hidden {
+  display: none;
 }
 
 .loader {

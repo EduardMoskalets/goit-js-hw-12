@@ -22,12 +22,12 @@ export function renderImages(images, container) {
     
     container.insertAdjacentHTML('beforeend', markup);
 
-    // Инсталяция библиотеки 
+    // Инсталяция библиотеки
     const lightbox = new SimpleLightbox('.gallery a');
     lightbox.refresh();
 }
 
-//  библиотека ИзиТоаст 
+//  библиотека ИзиТоаст
 export function showToast(type, message) {
     iziToast[type]({
         title: type.charAt(0).toUpperCase() + type.slice(1),

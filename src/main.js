@@ -35,6 +35,9 @@ searchForm.addEventListener('submit', async (event) => {
         showToast('error', 'Something went wrong. Please try again later.');
     }
 });
+
+// =====================================================================
+
 // =============== добавление в разметку лоадер =========================
 function showLoadingIndicator() {
     resultsContainer.innerHTML = '<div class="loader"></div>';
