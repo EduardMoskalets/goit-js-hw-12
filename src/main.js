@@ -93,7 +93,8 @@ searchForm.addEventListener('submit', async (event) => {
     currentQuery = query;
     currentPage = 1;
     clearResults(resultsContainer);
-    toggleLoadMoreButton(false);
+    // Спрятать кнопку =====================================
+    toggleLoadMoreButton(false); 
     showLoadingIndicator();
 // ====================== кнопка лоад мор ================================
     try {
@@ -102,6 +103,7 @@ searchForm.addEventListener('submit', async (event) => {
 
         if (hits.length > 0) {
             renderImages(hits, resultsContainer);
+            //  показать кнопку если есть изображения 
             toggleLoadMoreButton(currentPage * 15 < totalHits);
         } else {
             showToast('info', 'Sorry, there are no images matching your search query. Please try again!');
@@ -127,8 +129,13 @@ loadMoreButton.addEventListener('click', async () => {
             toggleLoadMoreButton(currentPage * 15 < totalHits);
         }
 //  ==================== проверка ===============================================
+//  спрятать кнопку если достигло конца результатта
         if (currentPage * 15 >= totalHits) {
             showToast('info', "We're sorry, but you've reached the end of search results.");
+            toggleLoadMoreButton(false);
+        } else {
+            showToast('info', "We're sorry, but you've reached the end of search results.");
+            toggleLoadMoreButton(false); //  прячем кнопку если нет больше результатов
         }
     } catch (error) {
         hideLoadingIndicator();

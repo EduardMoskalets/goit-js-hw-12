@@ -93,7 +93,11 @@ export function showToast(type, message) {
 //  ============================ переключение =======================================
 export function toggleLoadMoreButton(show) {
     const loadMoreButton = document.querySelector('.load-more');
-    loadMoreButton.classList.toggle('hidden', !show);
+    if (show) {
+        loadMoreButton.classList.remove('hidden');
+    } else {
+        loadMoreButton.classList.add('hidden');
+    }
 }
 
 
