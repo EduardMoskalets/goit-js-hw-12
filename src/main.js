@@ -79,6 +79,7 @@ const loadMoreButton = document.querySelector('.load-more');
 
 let currentPage = 1;
 let currentQuery = '';
+// let totalHits = 0;
 
 // ================= слушатель сабмит ==============================
 searchForm.addEventListener('submit', async (event) => {
@@ -99,12 +100,14 @@ searchForm.addEventListener('submit', async (event) => {
 // ====================== кнопка лоад мор ================================
     try {
         const { hits, totalHits } = await getPhotos(query, currentPage);
+        // renderImages(hits, resultsContainer);
+        // totalHits = total; // сохранить количество результатов
         hideLoadingIndicator();
 
         if (hits.length > 0) {
             renderImages(hits, resultsContainer);
-            //  показать кнопку если есть изображения 
             toggleLoadMoreButton(currentPage * 15 < totalHits);
+            //  показать кнопку если есть изображения 
         } else {
             showToast('info', 'Sorry, there are no images matching your search query. Please try again!');
         }
@@ -126,22 +129,35 @@ loadMoreButton.addEventListener('click', async () => {
         if (hits.length > 0) {
             renderImages(hits, resultsContainer);
             scrollPage();
-            toggleLoadMoreButton(currentPage * 15 < totalHits);
-        }
-//  ==================== проверка ===============================================
-//  спрятать кнопку если достигло конца результатта
-        if (currentPage * 15 >= totalHits) {
-            showToast('info', "We're sorry, but you've reached the end of search results.");
-            toggleLoadMoreButton(false);
+            toggleLoadMoreButton(currentPage * 15 < totalHits); // Показать или спрятать кнопку 
+
+            if (currentPage * 15 >= totalHits) {
+                showToast('info', "We're sorry, but you've reached the end of search results.");
+                toggleLoadMoreButton(false); // Спрятать кнопку
+            }
         } else {
             showToast('info', "We're sorry, but you've reached the end of search results.");
-            toggleLoadMoreButton(false); //  прячем кнопку если нет больше результатов
+            toggleLoadMoreButton(false); // Спрятать кнопку
         }
     } catch (error) {
         hideLoadingIndicator();
         showToast('error', 'Something went wrong. Please try again later.');
     }
 });
+//  ==================== проверка ===============================================
+//  спрятать кнопку если достигло конца результатта
+//         if (currentPage * 15 >= totalHits) {
+//             showToast('info', "We're sorry, but you've reached the end of search results.");
+//             toggleLoadMoreButton(false);
+//         } else {
+//             showToast('info', "We're sorry, but you've reached the end of search results.");
+//             toggleLoadMoreButton(false); //  прячем кнопку если нет больше результатов
+//         }
+//     } catch (error) {
+//         hideLoadingIndicator();
+//         showToast('error', 'Something went wrong. Please try again later.');
+//     }
+// });
 
 // =========================== лоадер ========================================
 function showLoadingIndicator() {
